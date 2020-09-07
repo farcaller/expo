@@ -1,5 +1,6 @@
 package expo.modules.devmenu.modules
 
+import android.os.Build
 import com.facebook.react.bridge.Promise
 import com.facebook.react.bridge.ReactApplicationContext
 import com.facebook.react.bridge.ReactContextBaseJavaModule
@@ -19,6 +20,15 @@ class DevMenuInternalModule(reactContext: ReactApplicationContext)
   private val devMenuSettings by lazy {
     reactContext
       .getNativeModule(DevMenuSettings::class.java)
+  }
+
+  private val isDevice
+    get() = !Build.FINGERPRINT.contains("vbox") && !Build.FINGERPRINT.contains("generic")
+
+  override fun getConstants(): Map<String, Any> {
+    return mapOf(
+      "isDevice" to isDevice
+    )
   }
 
   @ReactMethod
