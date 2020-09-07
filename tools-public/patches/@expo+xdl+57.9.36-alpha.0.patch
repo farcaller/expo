@@ -1,0 +1,17 @@
+diff --git a/node_modules/@expo/xdl/build/detach/IosShellApp.js b/node_modules/@expo/xdl/build/detach/IosShellApp.js
+index c774d2e..050120a 100644
+--- a/node_modules/@expo/xdl/build/detach/IosShellApp.js
++++ b/node_modules/@expo/xdl/build/detach/IosShellApp.js
+@@ -210,10 +210,10 @@ async function _buildAsync(projectName, workspacePath, configuration, type, rela
+       pathToArtifact;
+ 
+   if (type === 'simulator') {
+-    buildCmd += ` -sdk iphonesimulator CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ARCHS="i386 x86_64" ONLY_ACTIVE_ARCH=NO | xcpretty`;
++    buildCmd += ` -sdk iphonesimulator CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO ARCHS="i386 x86_64" ONLY_ACTIVE_ARCH=NO`;
+     pathToArtifact = _path().default.join(buildDest, 'Build', 'Products', `${configuration}-iphonesimulator`, `${projectName}.app`);
+   } else if (type === 'archive') {
+-    buildCmd += ` -sdk iphoneos -destination generic/platform=iOS archive -archivePath ${buildDest}/${projectName}.xcarchive CODE_SIGNING_ALLOWED=NO | xcpretty`;
++    buildCmd += ` -sdk iphoneos -destination generic/platform=iOS archive -archivePath ${buildDest}/${projectName}.xcarchive CODE_SIGNING_ALLOWED=NO`;
+     pathToArtifact = _path().default.join(buildDest, `${projectName}.xcarchive`);
+   } else {
+     throw new Error(`Unsupported build type: ${type}`);
